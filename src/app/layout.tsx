@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider, ClerkLoading, ClerkLoaded } from "@clerk/nextjs";
 import Navbar from "@/components/Navbar";
-import { dark, neobrutalism } from '@clerk/themes'
+import {  neobrutalism } from '@clerk/themes'
 
 
 const geistSans = Geist({
