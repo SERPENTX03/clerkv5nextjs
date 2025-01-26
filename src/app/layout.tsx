@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider, ClerkLoading, ClerkLoaded } from "@clerk/nextjs";
+import Navbar from "@/components/Navbar";
+import { dark, neobrutalism } from '@clerk/themes'
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,12 +27,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <ClerkProvider appearance={{baseTheme: neobrutalism}}>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <ClerkLoading>
+            <div className="flex justify-center items-center h-screen">
+              {" "}
+              Loading...
+            </div>
+          </ClerkLoading>
+          <ClerkLoaded>
+            <Navbar />
+            {children}
+          </ClerkLoaded>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
